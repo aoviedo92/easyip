@@ -23,7 +23,7 @@ class LineEdit(QLineEdit):
         self.setStyleSheet("border: 1px solid #9A1616")
 
     def success_style(self):
-        self.setStyleSheet("border: 1px solid #00FA9A")
+        self.setStyleSheet("border: 1px solid #66CDAA")
 
     def focus_in_style(self):
         self.setStyleSheet("border: 1px solid grey")
