@@ -169,11 +169,13 @@ class Main(QMainWindow, Ui_MainWindow):
             self.layout_wrapper_tile.addWidget(tile)
             tile.add_tile()
             self.refresh_data()
-            self.restart_form_lineedit()
+            self.red_code = False
+            self.restart_form()
             return tile
         return None
 
-    def restart_form_lineedit(self):
+    def restart_form(self):
+        print("RESTART")
         for line, lbl in self.list_lineEdit_Label:
             line.focus_out_style()
             line.setText("")
@@ -199,6 +201,7 @@ class Main(QMainWindow, Ui_MainWindow):
         LineEdit el evento focusInEvent y se vuelve a poner el modo escritura normal
         :return: FALSO si no hay errores, TRUE si los hay
         """
+        print "VALIDATOR"
         error = False
         if self.red_code:
             if self.combo.currentIndex() == 0:
