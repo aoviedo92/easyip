@@ -1,0 +1,9 @@
+('D:\\adri\\work\\PycharmProjects\\easyip\\dist\\EasyIP.exe',
+ False,
+ False,
+ 'res\\logo.ico',
+ None,
+ [],
+ None,
+ False,
+ 1436538161L)
