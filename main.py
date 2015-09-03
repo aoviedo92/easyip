@@ -30,7 +30,7 @@ class Main(QMainWindow, Ui_MainWindow):
 
         self.already_dhcp = False
         self.red_code = False
-
+        self.default_tile = False
         self.IPCONFIG = ipconfig()
         self.options = list()
         self.config = list()
@@ -115,6 +115,7 @@ class Main(QMainWindow, Ui_MainWindow):
                 self.layout_wrapper_tile.addWidget(tile)
         else:
             tile = NetConfigTile.default_tile()
+            self.default_tile = tile
             self.layout_wrapper_tile.addWidget(tile)
 
     @pyqtSignature('')
@@ -167,6 +168,7 @@ class Main(QMainWindow, Ui_MainWindow):
             save_data(str(id_), str(ad), str(nm), str(ip), str(ms), str(gw), str(dns))
             tile = NetConfigTile(id_, ad, nm, ip, ms, gw, dns)
             self.layout_wrapper_tile.addWidget(tile)
+            if self.default_tile: self.default_tile.remove_tile()
             tile.add_tile()
             self.refresh_data()
             self.red_code = False
