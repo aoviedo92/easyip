@@ -24,6 +24,7 @@ class Main(QMainWindow, Ui_MainWindow):
     options --> mantiene las opciones del programa, es necesario actualizarlo cuando se cambia alguna opcion
     config --> informacion de los tiles
     """
+
     def __init__(self, parent=None):
         super(Main, self).__init__(parent)
 
@@ -168,13 +169,15 @@ class Main(QMainWindow, Ui_MainWindow):
             self.layout_wrapper_tile.addWidget(tile)
             tile.add_tile()
             self.refresh_data()
+            self.restart_form_lineedit()
             return tile
-        # else:
-        #     for line, lbl in self.list_lineEdit_Label:
-                # ademas de sobreescribir focusOut en LineEdit, aqui tb lo hacemos, el obj es q despues de dar salvar,
-                # al perder el foco un LineEdit con errores se oculten los msg si se satisface la validacion.
-                # line.focusOutEvent = lambda _: self.validator()
         return None
+
+    def restart_form_lineedit(self):
+        for line, lbl in self.list_lineEdit_Label:
+            line.focus_out_style()
+            line.setText("")
+        self.combo.setCurrentIndex(0)
 
     def check_full_list(self):
         self.refresh_data()
@@ -185,7 +188,17 @@ class Main(QMainWindow, Ui_MainWindow):
             return True
         return False
 
-    def validator(self):
+    def validator(self, read_only=False):
+        """
+        Validar cada LineEdit
+        :param read_only: cuando se de clic a uno de los botones de salvar, entonces hay q hacer validaciones en vivo
+        justo cuando se pierde el foco del LineEdit, pero se queda el cursor marcado en el line edit aunq ya no tenga
+        el foco: (TypeError: invalid argument to sipBadCatcherResult()). Entonces cuando llamo a este metodo desde la
+        funcion lambda para rescribir otra vez el evento focusOutEvent del LineEdit le paso este argumento en True para q
+        el LineEdit sea de solo lectura. Cuando se vuelve a obtener el foco todo marcha ok pq se reescribio en la clase
+        LineEdit el evento focusInEvent y se vuelve a poner el modo escritura normal
+        :return: FALSO si no hay errores, TRUE si los hay
+        """
         error = False
         if self.red_code:
             if self.combo.currentIndex() == 0:
@@ -207,13 +220,14 @@ class Main(QMainWindow, Ui_MainWindow):
                         lbl.setVisible(True)
                         line.error_style()
                 else:
+                    line.setReadOnly(read_only)
                     line.success_style()
                     lbl.setVisible(False)
             # self.red_code = False
             for line, lbl in self.list_lineEdit_Label:
                 # ademas de sobreescribir focusOut en LineEdit, aqui tb lo hacemos, el obj es q despues de dar salvar,
                 # al perder el foco un LineEdit con errores se oculten los msg si se satisface la validacion.
-                line.focusOutEvent = lambda _: self.validator()
+                line.focusOutEvent = lambda _: self.validator(True)
         return error
 
 

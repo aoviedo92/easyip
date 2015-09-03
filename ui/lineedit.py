@@ -12,6 +12,7 @@ class LineEdit(QLineEdit):
 
     def focusInEvent(self, QFocusEvent):
         super(LineEdit, self).focusInEvent(QFocusEvent)
+        self.setReadOnly(False)
         self.focus_in_style()
 
     def focusOutEvent(self, QFocusEvent):

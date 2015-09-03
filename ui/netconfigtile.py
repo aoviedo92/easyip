@@ -101,7 +101,6 @@ class NetConfigTile(QFrame):
                              u'Nombre de la configuración...',
                              'IP para salvar...')
 
-
     def press_set_ip(self):
         out = set_ip(self.ID,
                      self.lbl_ip.text(),
