@@ -1,0 +1,41 @@
+# self.lbl_info = Label()
+# self.layout_wrapper_tile = QVBoxLayout()
+# self.layout_tiles.addLayout(self.layout_wrapper_tile)
+# self.layout_tiles.addStretch(1)
+
+# btn_help = RoundedButton('help2.png', 'help2.png', 'white', QSize(60, 60))
+# self.layout_info_help.addWidget(btn_help)
+
+# self.layout_wrapper_tile.addWidget(self.lbl_info)
+# self.lbl_err_combo = Label()
+# self.lbl_err_nm = Label()
+# self.lbl_err_ad = Label()
+# self.lbl_err_ip = Label()
+# self.lbl_err_ms = Label()
+# self.lbl_err_gw = Label()
+# self.lbl_err_dns = Label()
+
+# self.line_nm = LineEdit('Nombre.', ['required'])
+# self.line_ip = LineEdit('Ip.', ['required', 'ip'])
+# self.line_ms = LineEdit(u'Máscara.', ['required', 'ms'])
+# self.line_gw = LineEdit('Puerta de enlace...', ['ip'])
+# self.line_dns = LineEdit('Servidor dns...', ['ip'])
+
+# self.combo = combo_interfaces(self.IPCONFIG)
+# self.combo.currentIndexChanged.connect(self.validator)
+# self.layout_lineedit.addWidget(self.combo)
+# self.layout_lineedit.addWidget(self.lbl_err_combo)
+
+60A917 verde
+16499A azul osc
+4390DF azul cielo
+---------
+E51400 rojo
+FA6800 naranja
+F0A30A amber
+BF5A15 dark orange
+Gradients are specified in Object Bounding Mode. Imagine the box in which the gradient is rendered, to have its top left corner at (0, 0) and its bottom right corner at (1, 1). Gradient parameters are then specified as percentages from 0 to 1. These values are extrapolated to actual box coordinates at runtime. It is possible specify values that lie outside the bounding box (-0.6 or 1.8, for instance).
+
+Warning: The stops have to appear sorted in ascending order.
+
+Examples:
